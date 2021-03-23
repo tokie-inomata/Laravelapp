@@ -18,7 +18,7 @@ Route::get('/', function () {
 use App\Http\Middleware\HelloMiddleware;
 
 
-//DBに登録、更新、削除の動作コントローラ
+//helloのルート
 Route::get('hello', 'HelloController@index');
 Route::get('hello/add', 'HelloController@add');
 Route::post('hello/add', 'HelloController@create');
@@ -27,6 +27,7 @@ Route::post('hello/edit', 'HelloController@update');
 Route::get('hello/del', 'HelloController@del');
 Route::post('hello/del', 'HelloController@remove');
 Route::get('hello/show', 'HelloController@show');
+Route::get('hello/rest', 'HelloController@rest');
 
 //Eloquentの動作コントローラ
 Route::get('person', 'PersonController@index');
@@ -43,3 +44,10 @@ Route::post('person/del', 'PersonController@remove');
 Route::get('board', 'BoardController@index');
 Route::get('board/add', 'BoardController@add');
 Route::post('board/add', 'BoardController@create');
+
+//Restのルート
+Route::resource('rest', 'RestappController');
+
+//session
+Route::get('hello/session', 'HelloController@ses_get');
+Route::post('hello/session', 'HelloController@ses_put');
