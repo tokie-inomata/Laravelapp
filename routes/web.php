@@ -19,7 +19,7 @@ use App\Http\Middleware\HelloMiddleware;
 
 
 //helloのルート
-Route::get('hello', 'HelloController@index');
+Route::get('hello', 'HelloController@index')->middleware('auth');
 Route::get('hello/add', 'HelloController@add');
 Route::post('hello/add', 'HelloController@create');
 Route::get('hello/edit', 'HelloController@edit');
@@ -28,6 +28,9 @@ Route::get('hello/del', 'HelloController@del');
 Route::post('hello/del', 'HelloController@remove');
 Route::get('hello/show', 'HelloController@show');
 Route::get('hello/rest', 'HelloController@rest');
+//hello authのルート
+Route::get('hello/auth', 'HelloController@getAuth');
+Route::post('hello/auth', 'HelloController@postAuth');
 
 //Eloquentの動作コントローラ
 Route::get('person', 'PersonController@index');
@@ -51,3 +54,7 @@ Route::resource('rest', 'RestappController');
 //session
 Route::get('hello/session', 'HelloController@ses_get');
 Route::post('hello/session', 'HelloController@ses_put');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
